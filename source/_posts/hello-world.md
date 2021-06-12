@@ -1,38 +1,10 @@
 ---
-title: Hello World
+title: 立起新的Flag
+tags: Flag
+categories: Essay
+mathjax: true
+date: 2021-6-13 06:00:00
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+工作快一年，实在是觉得个人整体技术水平下滑得厉害，除了工作相关的容器领域，其他基础知识都开始淡忘了。
 
-## Quick Start
-
-### Create a new post
-
-``` bash
-$ hexo new "My New Post"
-```
-
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+为了改变这种情况，重新开技术博客来督促自己，之后可能会包括各种算法复健、CTF复健、源码分析、漏洞分析的post。
