@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74692f89-407a-448c-9c45-5b17a437e5be" name="Default Changelist" comment="move pic">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/2021-06-13-OSCP-Cheat-Sheet.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2021-06-13-OSCP-Cheat-Sheet.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images20210616115928.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/images20210616115928.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/20210616120212.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/images20210616115928.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
       <workItem from="1623531935144" duration="5491000" />
       <workItem from="1623569905981" duration="1206000" />
       <workItem from="1623815908572" duration="4000" />
-      <workItem from="1623816009426" duration="76000" />
+      <workItem from="1623816009426" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1623532692347</created>
@@ -91,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623812732752</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="move pic">
+      <created>1623816111751</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1623816111751</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +146,7 @@
     <MESSAGE value="Add 3 pages." />
     <MESSAGE value="Save theme." />
     <MESSAGE value="1. Change theme.&#10;2. Add a post - OSCP Cheat Sheet.&#10;3. Delete categories page." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Change theme.&#10;2. Add a post - OSCP Cheat Sheet.&#10;3. Delete categories page." />
+    <MESSAGE value="move pic" />
+    <option name="LAST_COMMIT_MESSAGE" value="move pic" />
   </component>
 </project>

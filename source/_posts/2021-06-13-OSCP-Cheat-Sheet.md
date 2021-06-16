@@ -171,6 +171,7 @@ Openssl Generate passwd
 ```bash
 openssl passwd -1 -salt cipher cipher
 ```
+
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbLTEwNjYxNTcxOTBdfQ==
 -->
