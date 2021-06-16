@@ -18,7 +18,6 @@ nav:
   about: /about/
   articles: /archives/
   tag: /tags/
-  category: /categories/
 
 
 # Links to your social media accounts.
@@ -27,10 +26,7 @@ nav:
 # only 'mail' is an exception.
 social_links:
   github: https://github.com/Cipher731
-  twitter: /
-  facebook: /
-  linkedin: /
-  mail: mailto:name@email.com
+  mail: holycipher731@gmail.com
 
 # Customize the overview with displaying a tagcloud on the index page.
 # Options: https://hexo.io/docs/helpers.html#tagcloud
@@ -113,7 +109,7 @@ favicon:
 # Set the color scheme.
 # Available color schemes are 'dark', 'light', 'classic' and 'white'.
 # Alternatively, add your own custom color scheme to source/css/_colors.
-colorscheme: light
+colorscheme: dark
 
 # Maximal width of the page in rem units.
 page_width: 48
