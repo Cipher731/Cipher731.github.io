@@ -4,7 +4,6 @@ date: 2021-06-13 06:25:40
 tags:
 - OSCP
 - Penetration Test
-
 ---
 
 # Pentest Cheatsheet
@@ -172,3 +171,6 @@ Openssl Generate passwd
 ```bash
 openssl passwd -1 -salt cipher cipher
 ```
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEwNjYxNTcxOTBdfQ==
+-->
