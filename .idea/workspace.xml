@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74692f89-407a-448c-9c45-5b17a437e5be" name="Default Changelist" comment="move pic">
-      <change beforePath="$PROJECT_DIR$/themes/cactus/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/cactus/_config.yml" afterDir="false" />
+    <list default="true" id="74692f89-407a-448c-9c45-5b17a437e5be" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/themes/cactus/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/cactus/layout/_partial/head.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/cactus/layout/_partial/scripts.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/cactus/layout/_partial/scripts.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +98,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623816111751</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="enable analytics service">
+      <created>1623943173162</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1623943173162</updated>
+    </task>
+    <task id="LOCAL-00008" summary="change">
+      <created>1623943397903</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1623943397903</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +166,8 @@
     <MESSAGE value="Save theme." />
     <MESSAGE value="1. Change theme.&#10;2. Add a post - OSCP Cheat Sheet.&#10;3. Delete categories page." />
     <MESSAGE value="move pic" />
-    <option name="LAST_COMMIT_MESSAGE" value="move pic" />
+    <MESSAGE value="enable analytics service" />
+    <MESSAGE value="change" />
+    <option name="LAST_COMMIT_MESSAGE" value="change" />
   </component>
 </project>

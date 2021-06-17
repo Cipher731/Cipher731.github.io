@@ -80,28 +80,6 @@
   });
   </script>
 <% } %>
-<!-- Google Analytics -->
-<% if (theme.google_analytics.enabled && theme.google_analytics.id){ %>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.google_analytics.id %>"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '<%= theme.google_analytics.id %>');
-    </script>
-<% } %>
-<!-- Baidu Analytics -->
-<% if (theme.baidu_analytics.enabled && theme.baidu_analytics.id){ %>
-  <script type="text/javascript">
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?<%= theme.baidu_analytics.id %>";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
-<% } %>
 <!-- Cloudflare Analytics -->
 <% if (theme.cloudflare_analytics.enabled && theme.cloudflare_analytics.id){ %>
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "<%= theme.cloudflare_analytics.id %>"}'></script>
