@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="74692f89-407a-448c-9c45-5b17a437e5be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/themes/cactus/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/cactus/layout/_partial/head.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/cactus/layout/_partial/scripts.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/cactus/layout/_partial/scripts.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,18 +16,22 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1trf42wml0PYwxyEP3B62yxIbUI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -35,13 +43,8 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/source/images" />
-    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -51,10 +54,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623531933743</updated>
-      <workItem from="1623531935144" duration="5491000" />
-      <workItem from="1623569905981" duration="1206000" />
-      <workItem from="1623815908572" duration="4000" />
-      <workItem from="1623816009426" duration="275000" />
+      <workItem from="1623531935144" duration="3688000" />
+      <workItem from="1635170469275" duration="627000" />
+      <workItem from="1635266697010" duration="4738000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1623532692347</created>
@@ -77,42 +79,7 @@
       <option name="project" value="LOCAL" />
       <updated>1623535883134</updated>
     </task>
-    <task id="LOCAL-00004" summary="Save theme.">
-      <created>1623536079099</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1623536079099</updated>
-    </task>
-    <task id="LOCAL-00005" summary="1. Change theme.&#10;2. Add a post - OSCP Cheat Sheet.&#10;3. Delete categories page.">
-      <created>1623812732752</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1623812732752</updated>
-    </task>
-    <task id="LOCAL-00006" summary="move pic">
-      <created>1623816111751</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1623816111751</updated>
-    </task>
-    <task id="LOCAL-00007" summary="enable analytics service">
-      <created>1623943173162</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1623943173162</updated>
-    </task>
-    <task id="LOCAL-00008" summary="change">
-      <created>1623943397903</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1623943397903</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,28 +113,17 @@
             </State>
           </value>
         </entry>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/themes/cactus" />
     </ignored-roots>
     <MESSAGE value="Init commit" />
     <MESSAGE value="First post.&#10;Change theme.&#10;Add plugin.&#10;Fix node version in CI config." />
     <MESSAGE value="Add 3 pages." />
-    <MESSAGE value="Save theme." />
-    <MESSAGE value="1. Change theme.&#10;2. Add a post - OSCP Cheat Sheet.&#10;3. Delete categories page." />
-    <MESSAGE value="move pic" />
-    <MESSAGE value="enable analytics service" />
-    <MESSAGE value="change" />
-    <option name="LAST_COMMIT_MESSAGE" value="change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add 3 pages." />
   </component>
 </project>
