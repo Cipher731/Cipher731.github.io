@@ -28,7 +28,7 @@ tags:
 PS: 看了这篇[Stack Overflow的帖子](https://stackoverflow.com/questions/1641219/does-python-have-private-variables-in-classes)，所以确实是一种逻辑上的约束。
 
 ### 1.3 了解bytes和str的区别
-这条也比较有意思，从个人角度来说的话，由于在CTF中经常会写脚本处理一些编码相关的问题，不论是Web还是Crypto还是Pwn还是Misc还是Reverse，根据出题人的脑洞，都会或多或少地接触到编码的转换，其中最常见也最基本的就是base64编码。  
+这条也比较有意思，从我个人角度来说的话，由于在CTF中经常会写脚本处理一些编码相关的问题，不论是Web还是Crypto还是Pwn还是Misc还是Reverse，根据出题人的脑洞，都会或多或少地接触到编码的转换，其中最常见也最基本的就是base64编码。  
 
 虽然书上没有提这块内容在Python 2和Python 3上的差异，但是我觉得这个有必要在这展开一下。  
 
