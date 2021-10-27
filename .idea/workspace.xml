@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74692f89-407a-448c-9c45-5b17a437e5be" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/source/_drafts/Docker源码分析-1-docker-create.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_drafts/Docker源码分析-2-docker-start.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/Effective-Python-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_drafts/Effective-Python-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/GBK-vs-GB-2312.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_drafts/GBK-vs-GB2312-vs-GB18030.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/docker-create-源码分析.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/docker-start-源码分析.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2021-06-13-OSCP-Cheat-Sheet.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2021-06-13-OSCP-Cheat-Sheet.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/hello-world.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/hello-world.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +32,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1trf42wml0PYwxyEP3B62yxIbUI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
