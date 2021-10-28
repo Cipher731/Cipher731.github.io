@@ -1,7 +1,7 @@
 ---
 title: 立起新的Flag
 tags: Flag
-categories: Essay
+categories: Misc
 mathjax: true
 date: 2021-6-13 06:00:00
 

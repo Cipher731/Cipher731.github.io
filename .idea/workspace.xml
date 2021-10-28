@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74692f89-407a-448c-9c45-5b17a437e5be" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/source/_drafts/Python-3的-实现.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/2021-10-28-Goland配置项目moby、containerd和runc.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/categories/index.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_drafts/Effective-Python-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_drafts/Effective-Python-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/GBK-vs-GB2312-vs-GB18030.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_drafts/GBK-vs-GB2312-vs-GB18030.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/Go字符串优化.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_drafts/Go字符串优化.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/Python-3-10-Structural-Pattern-Matching.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_drafts/Python-3-10-Structural-Pattern-Matching.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2021-06-13-OSCP-Cheat-Sheet.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2021-06-13-OSCP-Cheat-Sheet.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/hello-world.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/hello-world.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/cactus/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/cactus/_config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +42,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -80,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623535883134</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update">
+      <created>1635355219832</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1635355219832</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,12 +136,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/themes/cactus" />
     </ignored-roots>
     <MESSAGE value="Init commit" />
     <MESSAGE value="First post.&#10;Change theme.&#10;Add plugin.&#10;Fix node version in CI config." />
     <MESSAGE value="Add 3 pages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add 3 pages." />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
 </project>

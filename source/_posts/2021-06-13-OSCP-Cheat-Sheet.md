@@ -5,6 +5,7 @@ updated: 2021-06-14 12:25:40
 tags:
 - OSCP
 - Penetration Test
+categories: OSCP
 ---
 
 # Pentest Cheatsheet

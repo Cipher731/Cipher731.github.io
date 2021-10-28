@@ -1,13 +1,14 @@
 ---
 title: Effective Python - 1
 tags:
-- Python
+- Python 
+categories: Effective Python
 ---
 
 ## 0. 系列前言
 《Effective Python》是某阳推荐的，他所在部门的必读书籍，虽然我不用Python进行一些大型应用的开发，但是作为一个热爱Python的脚本小子，我对这本书也非常感兴趣。最新第二版今年刚出，还热乎着，还比第一版多了整整31条建议，这不血赚？
 
-这本书的子标题叫90 Specific Ways to Write Better Python，中译名叫编写高质量Python代码的90个有效方法，打算写5篇左右的文章学习记录一下，每篇分析18个左右的方法。
+这本书的子标题叫90 Specific Ways to Write Better Python，中译名叫编写高质量Python代码的90个有效方法，一共有10章，打算写5篇左右的文章学习记录一下，每篇覆盖2章内容。
 
 ## 1. 培养Pythonic思维
 
@@ -42,8 +43,110 @@ Python 2时代，如果直接输入非Ascii字符的字符串，会自动根据�
 
 正因如此，Python 2的程序在编写时出现了不一致的地方，处理相同逻辑，会因跨平台的需求，有的时候需要做处理，有的时候不需要做处理，所以Python社区直接决定：所有时候都要做处理！
 
-这也就是Python 3中的运作方式，被称为Unicode Sandwich（Unicode三明治）。
+这也就是Python 3中的运作方式，被称为Unicode三明治（Unicode Sandwich）。
 
 Python 2没有bytes和str的区分，2.6之后添加的bytes只是str的别名，从行为上来说，Python 2的str就类似C的char字符数组型的字符串，和Python 3的bytes类型一致，而Python 3的str有点类似Python 2的unicode，这里的细节就不再过多展开。
 
-接下来就是正式的Python 3中的bytes和str的区别部分。
+#### 1.3.1 互相不兼容
+众所周知，Python属于强类型语言，类型直接不会自动转换，bytes和str虽然看上去在好多地方用法差不多，但并不能互相替换。
+
+书中举的例子一共有这么几种：
+- `+`，拼接，bytes和str不能相互拼接
+- `>`、`<`，`==`二元比较，bytes和str不能相互比较
+- `%`操作符，格式化字符串的行为
+
+书中在说明二元比较情况的时候提到了bytes与str实例是否相等，总是会被评估为假，翻翻cpython源码应该能知道是为啥
+
+反编译结果`dis.dis('a == b')`，可以发现用到了COMPARE_OP
+```text
+LOAD_NAME                0 (a)
+LOAD_NAME                1 (b)
+COMPARE_OP               2 (==)
+```
+
+cpython/Python/ceval.c:3859
+```c
+...
+        TARGET(COMPARE_OP) {
+            assert(oparg <= Py_GE);
+            PyObject *right = POP();
+            PyObject *left = TOP();
+            PyObject *res = PyObject_RichCompare(left, right, oparg);
+            SET_TOP(res);
+            Py_DECREF(left);
+            Py_DECREF(right);
+            if (res == NULL)
+                goto error;
+            PREDICT(POP_JUMP_IF_FALSE);
+            PREDICT(POP_JUMP_IF_TRUE);
+            DISPATCH();
+        }
+...
+```
+
+发现会调用`PyObject_RichCompare`，继续看到这个函数
+cpython/Objects/object.c:731
+```c
+PyObject *
+PyObject_RichCompare(PyObject *v, PyObject *w, int op)
+{
+    PyThreadState *tstate = _PyThreadState_GET();
+
+    assert(Py_LT <= op && op <= Py_GE);
+    if (v == NULL || w == NULL) {
+        if (!_PyErr_Occurred(tstate)) {
+            PyErr_BadInternalCall();
+        }
+        return NULL;
+    }
+    if (_Py_EnterRecursiveCall(tstate, " in comparison")) {
+        return NULL;
+    }
+    PyObject *res = do_richcompare(tstate, v, w, op);
+    _Py_LeaveRecursiveCall(tstate);
+    return res;
+}
+```
+
+看`do_richcompare`，
+cpython/Objects/object.c:679
+```c
+static PyObject *
+do_richcompare(PyThreadState *tstate, PyObject *v, PyObject *w, int op)
+{
+...
+}
+```
+
+到这其实有一点超出范围了，本着求真务实的态度，我决定挖个坑后面看，就叫《Python 3的==实现》。
+
+回到正题就是Python的bytes和str之间也不能进行二元比较，而==会直接返回False。
+
+关于第三点`%`格式化字符串的行为，存在这些行为：
+- `bytes`类型的格式字符串中的`%s`可以用`bytes`填充，不能使用`str`进行填充，会报错提示不是`bytes-like`的对象或没有`__bytes__`方法
+- `str`类型的格式字符串中的`%s`可以用`str`填充，可以使用`bytes`进行填充，但行为不一致，书上说是调用了对象的`__repr__`方法
+
+其实觉得第二条调用对象的`__repr__`方法有点蹊跷，因为和上面的`__bytes__`方法对应的话这里应该是`__str__`方法才比较像。
+
+所以写个demo来测试一下
+```python
+class Foo:
+    def __str__(self):
+        raise Exception('str')
+    
+    def __repr__(self):
+        raise Exception('repr')
+
+foo = Foo()
+print('%s' % foo)
+```
+输出结果是：
+```text
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in __str__
+Exception: str
+```
+所以确实用的是`__str__`方法而不是`__repr__`方法
+
+
