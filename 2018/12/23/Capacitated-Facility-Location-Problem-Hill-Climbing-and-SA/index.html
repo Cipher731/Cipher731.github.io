@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、算法简述我采用的两种算法分别是爬山法（Hill-Climbing）和模拟退火法（Simulated Annealing）。实现了一个类用于描述问题的解并用于生成邻居，对应在solution.py文件中，主文件中就进行了具体的算法的实现。爬山法和模拟退火法有相似之处，爬山法从当前解的所有邻居中采纳一个最优解，而模拟退火法对当前解随机选取一个邻居，根据一定的规律采纳：  如果优于当前解，则采纳 如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capacitated Facility Location Problem - Hill-Climbing and SA">
+<meta property="og:url" content="https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/index.html">
+<meta property="og:site_name" content="Cipher731&#39;s Blog">
+<meta property="og:description" content="一、算法简述我采用的两种算法分别是爬山法（Hill-Climbing）和模拟退火法（Simulated Annealing）。实现了一个类用于描述问题的解并用于生成邻居，对应在solution.py文件中，主文件中就进行了具体的算法的实现。爬山法和模拟退火法有相似之处，爬山法从当前解的所有邻居中采纳一个最优解，而模拟退火法对当前解随机选取一个邻居，根据一定的规律采纳：  如果优于当前解，则采纳 如">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-23T14:35:06.000Z">
+<meta property="article:modified_time" content="2021-12-23T08:14:15.937Z">
+<meta property="article:author" content="Cipher731">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Capacitated Facility Location Problem - Hill-Climbing and SA</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+    <!-- Google Analytics -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-199728190-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-199728190-1');
+        </script>
+    
+    <!-- Baidu Analytics -->
+    
+        <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?93db9d043a30530833d0f8e65e1833a3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/06/12/hello-world/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2018/12/09/LeetCode-174-Dungeon-Game/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&text=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&is_video=false&description=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Capacitated Facility Location Problem - Hill-Climbing and SA&body=Check out this article: https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&name=Capacitated Facility Location Problem - Hill-Climbing and SA&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&t=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%97%E6%B3%95%E7%AE%80%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">一、算法简述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BB%93%E6%9E%9C"><span class="toc-number">2.</span> <span class="toc-text">二、结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">三、代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AF%A6%E7%BB%86%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">四、详细解</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Capacitated Facility Location Problem - Hill-Climbing and SA
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Cipher731</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-12-23T14:35:06.000Z" itemprop="datePublished">2018-12-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一、算法简述"><a href="#一、算法简述" class="headerlink" title="一、算法简述"></a>一、算法简述</h1><p>我采用的两种算法分别是爬山法（Hill-Climbing）和模拟退火法（Simulated Annealing）。<br>实现了一个类用于描述问题的解并用于生成邻居，对应在solution.py文件中，主文件中就进行了具体的算法的实现。<br>爬山法和模拟退火法有相似之处，爬山法从当前解的所有邻居中采纳一个最优解，而模拟退火法对当前解随机选取一个邻居，根据一定的规律采纳：</p>
+<ol>
+<li>如果优于当前解，则采纳</li>
+<li>如果劣于当前解，则根据$P_k = 1 / (1 + e^{-\Delta E_k/T})$的概率采纳</li>
+</ol>
+<p>由于第二条规则的存在，使得模拟退火法存在跳出局部最优的可能性。<br>在这两个算法中邻居的生成方法是重要的一环，在我的实现中，所有邻居由重新随机分配每个顾客来生成，每个邻居重新分配一个顾客，因此爬山法的邻居数目就是顾客数目。模拟退火法中的下一个解则是在所有这些邻居中随机选取一个，换句话说就是随机选取一个顾客并将他随机分配至新的设施。<br>在模拟退火法中，温度下降的函数以及初温的设定都是需要注意的地方，我所采用的降温函数是$T = T_0 / (1 + log(1 + k))$，其中k是外循环迭代轮数，每进行500次内循环就将外循环迭代次数加一，以实现降温。<br>由于涉及到很多样本，如果手动调整初温，很大几率无法顾全所有样本，因此需要选取一种设定初温的规则。<br>我所采用的设定初温的原则是在最初情况下使得没有提升的解被接受的概率是95%，具体操作就是选取初始解的100个非提升的邻居，计算耗费均值，根据这个值和需要的95%接受率来计算出初温。<br>在实际进行性能测试的时候，爬山法的速度要明显快于模拟退火法，这是因为在这种邻居定义下，邻居的数量与顾客数量相等，而爬山法的每次迭代都要遍历所有邻居，因此它的算法时间主要由邻居数量决定，随着顾客数量的增加，时间有显著的增长；模拟退火法每次迭代都只随机选取一个邻居，所以它的时间主要取决于总迭代次数，由于固定设置了500,000次迭代，所以所用时间的基数很大，同时也注意到尽管顾客数量在增加，但是运行时间上并没有出现显著的增长也是这个原因。<br>总体而言，模拟退火法最终解的质量都优于爬山法，因此在样本数量很大的时候，模拟退火法的优势就更明显。</p>
+<h1 id="二、结果"><a href="#二、结果" class="headerlink" title="二、结果"></a>二、结果</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>hill-climbing result</th>
+<th>hill-climbing time (s)</th>
+<th>SA result</th>
+<th>SA time (s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>p1</td>
+<td>10928</td>
+<td>0.03</td>
+<td>10032</td>
+<td>10.07</td>
+</tr>
+<tr>
+<td>p2</td>
+<td>9438</td>
+<td>0.04</td>
+<td>8917</td>
+<td>10.14</td>
+</tr>
+<tr>
+<td>p3</td>
+<td>11611</td>
+<td>0.04</td>
+<td>11104</td>
+<td>9.86</td>
+</tr>
+<tr>
+<td>p4</td>
+<td>14384</td>
+<td>0.03</td>
+<td>12441</td>
+<td>9.93</td>
+</tr>
+<tr>
+<td>p5</td>
+<td>11304</td>
+<td>0.03</td>
+<td>10158</td>
+<td>10.80</td>
+</tr>
+<tr>
+<td>p6</td>
+<td>10055</td>
+<td>0.03</td>
+<td>9032</td>
+<td>10.28</td>
+</tr>
+<tr>
+<td>p7</td>
+<td>13147</td>
+<td>0.03</td>
+<td>10800</td>
+<td>10.26</td>
+</tr>
+<tr>
+<td>p8</td>
+<td>13647</td>
+<td>0.04</td>
+<td>12903</td>
+<td>10.52</td>
+</tr>
+<tr>
+<td>p9</td>
+<td>11022</td>
+<td>0.03</td>
+<td>10175</td>
+<td>9.72</td>
+</tr>
+<tr>
+<td>p10</td>
+<td>9625</td>
+<td>0.03</td>
+<td>8927</td>
+<td>9.68</td>
+</tr>
+<tr>
+<td>p11</td>
+<td>11331</td>
+<td>0.03</td>
+<td>10715</td>
+<td>9.68</td>
+</tr>
+<tr>
+<td>p12</td>
+<td>13680</td>
+<td>0.03</td>
+<td>12124</td>
+<td>9.69</td>
+</tr>
+<tr>
+<td>p13</td>
+<td>14065</td>
+<td>0.03</td>
+<td>9517</td>
+<td>10.01</td>
+</tr>
+<tr>
+<td>p14</td>
+<td>10992</td>
+<td>0.03</td>
+<td>8181</td>
+<td>10.00</td>
+</tr>
+<tr>
+<td>p15</td>
+<td>12721</td>
+<td>0.04</td>
+<td>9650</td>
+<td>10.07</td>
+</tr>
+<tr>
+<td>p16</td>
+<td>15763</td>
+<td>0.04</td>
+<td>13053</td>
+<td>9.97</td>
+</tr>
+<tr>
+<td>p17</td>
+<td>12718</td>
+<td>0.03</td>
+<td>10286</td>
+<td>9.93</td>
+</tr>
+<tr>
+<td>p18</td>
+<td>11776</td>
+<td>0.03</td>
+<td>8517</td>
+<td>9.97</td>
+</tr>
+<tr>
+<td>p19</td>
+<td>14036</td>
+<td>0.04</td>
+<td>11227</td>
+<td>9.98</td>
+</tr>
+<tr>
+<td>p20</td>
+<td>16886</td>
+<td>0.03</td>
+<td>12088</td>
+<td>9.98</td>
+</tr>
+<tr>
+<td>p21</td>
+<td>11558</td>
+<td>0.04</td>
+<td>9715</td>
+<td>9.89</td>
+</tr>
+<tr>
+<td>p22</td>
+<td>10911</td>
+<td>0.03</td>
+<td>8017</td>
+<td>9.89</td>
+</tr>
+<tr>
+<td>p23</td>
+<td>12500</td>
+<td>0.04</td>
+<td>10161</td>
+<td>9.88</td>
+</tr>
+<tr>
+<td>p24</td>
+<td>15210</td>
+<td>0.04</td>
+<td>11803</td>
+<td>9.95</td>
+</tr>
+<tr>
+<td>p25</td>
+<td>16490</td>
+<td>0.47</td>
+<td>13380</td>
+<td>11.86</td>
+</tr>
+<tr>
+<td>p26</td>
+<td>13898</td>
+<td>0.50</td>
+<td>12327</td>
+<td>11.91</td>
+</tr>
+<tr>
+<td>p27</td>
+<td>18295</td>
+<td>0.52</td>
+<td>14242</td>
+<td>11.85</td>
+</tr>
+<tr>
+<td>p28</td>
+<td>23400</td>
+<td>0.47</td>
+<td>17178</td>
+<td>11.89</td>
+</tr>
+<tr>
+<td>p29</td>
+<td>19256</td>
+<td>0.46</td>
+<td>13849</td>
+<td>11.91</td>
+</tr>
+<tr>
+<td>p30</td>
+<td>14526</td>
+<td>0.46</td>
+<td>11949</td>
+<td>11.89</td>
+</tr>
+<tr>
+<td>p31</td>
+<td>18001</td>
+<td>0.51</td>
+<td>15257</td>
+<td>11.93</td>
+</tr>
+<tr>
+<td>p32</td>
+<td>21237</td>
+<td>0.52</td>
+<td>17402</td>
+<td>11.89</td>
+</tr>
+<tr>
+<td>p33</td>
+<td>16549</td>
+<td>0.50</td>
+<td>13301</td>
+<td>11.84</td>
+</tr>
+<tr>
+<td>p34</td>
+<td>14906</td>
+<td>0.47</td>
+<td>11844</td>
+<td>11.84</td>
+</tr>
+<tr>
+<td>p35</td>
+<td>19728</td>
+<td>0.46</td>
+<td>14646</td>
+<td>11.84</td>
+</tr>
+<tr>
+<td>p36</td>
+<td>22774</td>
+<td>0.54</td>
+<td>17640</td>
+<td>11.92</td>
+</tr>
+<tr>
+<td>p37</td>
+<td>15882</td>
+<td>0.50</td>
+<td>13468</td>
+<td>11.76</td>
+</tr>
+<tr>
+<td>p38</td>
+<td>12704</td>
+<td>0.54</td>
+<td>11513</td>
+<td>11.78</td>
+</tr>
+<tr>
+<td>p39</td>
+<td>17425</td>
+<td>0.51</td>
+<td>14682</td>
+<td>11.91</td>
+</tr>
+<tr>
+<td>p40</td>
+<td>23258</td>
+<td>0.48</td>
+<td>15972</td>
+<td>11.79</td>
+</tr>
+<tr>
+<td>p41</td>
+<td>8966</td>
+<td>0.12</td>
+<td>8790</td>
+<td>10.54</td>
+</tr>
+<tr>
+<td>p42</td>
+<td>9947</td>
+<td>0.09</td>
+<td>7345</td>
+<td>10.34</td>
+</tr>
+<tr>
+<td>p43</td>
+<td>9039</td>
+<td>0.07</td>
+<td>7098</td>
+<td>10.46</td>
+</tr>
+<tr>
+<td>p44</td>
+<td>12450</td>
+<td>0.12</td>
+<td>12056</td>
+<td>10.68</td>
+</tr>
+<tr>
+<td>p45</td>
+<td>11201</td>
+<td>0.10</td>
+<td>9515</td>
+<td>10.37</td>
+</tr>
+<tr>
+<td>p46</td>
+<td>10387</td>
+<td>0.09</td>
+<td>8982</td>
+<td>10.55</td>
+</tr>
+<tr>
+<td>p47</td>
+<td>14008</td>
+<td>0.10</td>
+<td>13325</td>
+<td>10.74</td>
+</tr>
+<tr>
+<td>p48</td>
+<td>12572</td>
+<td>0.10</td>
+<td>10969</td>
+<td>10.46</td>
+</tr>
+<tr>
+<td>p49</td>
+<td>11481</td>
+<td>0.06</td>
+<td>8172</td>
+<td>10.60</td>
+</tr>
+<tr>
+<td>p50</td>
+<td>9658</td>
+<td>0.15</td>
+<td>8871</td>
+<td>10.80</td>
+</tr>
+<tr>
+<td>p51</td>
+<td>10308</td>
+<td>0.16</td>
+<td>8458</td>
+<td>10.69</td>
+</tr>
+<tr>
+<td>p52</td>
+<td>15236</td>
+<td>0.15</td>
+<td>14835</td>
+<td>10.72</td>
+</tr>
+<tr>
+<td>p53</td>
+<td>14980</td>
+<td>0.15</td>
+<td>12449</td>
+<td>10.70</td>
+</tr>
+<tr>
+<td>p54</td>
+<td>15740</td>
+<td>0.13</td>
+<td>14798</td>
+<td>10.86</td>
+</tr>
+<tr>
+<td>p55</td>
+<td>12623</td>
+<td>0.19</td>
+<td>11274</td>
+<td>10.69</td>
+</tr>
+<tr>
+<td>p56</td>
+<td>29240</td>
+<td>0.85</td>
+<td>26223</td>
+<td>12.71</td>
+</tr>
+<tr>
+<td>p57</td>
+<td>38653</td>
+<td>0.86</td>
+<td>34841</td>
+<td>12.89</td>
+</tr>
+<tr>
+<td>p58</td>
+<td>58234</td>
+<td>0.86</td>
+<td>50246</td>
+<td>12.81</td>
+</tr>
+<tr>
+<td>p59</td>
+<td>46647</td>
+<td>0.66</td>
+<td>38872</td>
+<td>12.81</td>
+</tr>
+<tr>
+<td>p60</td>
+<td>30314</td>
+<td>0.78</td>
+<td>26449</td>
+<td>12.73</td>
+</tr>
+<tr>
+<td>p61</td>
+<td>37580</td>
+<td>0.77</td>
+<td>32644</td>
+<td>12.77</td>
+</tr>
+<tr>
+<td>p62</td>
+<td>59395</td>
+<td>0.68</td>
+<td>52376</td>
+<td>12.74</td>
+</tr>
+<tr>
+<td>p63</td>
+<td>43768</td>
+<td>0.82</td>
+<td>38964</td>
+<td>12.75</td>
+</tr>
+<tr>
+<td>p64</td>
+<td>29707</td>
+<td>0.87</td>
+<td>26792</td>
+<td>12.77</td>
+</tr>
+<tr>
+<td>p65</td>
+<td>35575</td>
+<td>0.95</td>
+<td>34239</td>
+<td>12.77</td>
+</tr>
+<tr>
+<td>p66</td>
+<td>58318</td>
+<td>0.84</td>
+<td>53027</td>
+<td>12.74</td>
+</tr>
+<tr>
+<td>p67</td>
+<td>44074</td>
+<td>0.84</td>
+<td>40560</td>
+<td>12.53</td>
+</tr>
+<tr>
+<td>p68</td>
+<td>28809</td>
+<td>0.82</td>
+<td>26783</td>
+<td>12.50</td>
+</tr>
+<tr>
+<td>p69</td>
+<td>37346</td>
+<td>0.82</td>
+<td>34219</td>
+<td>12.50</td>
+</tr>
+<tr>
+<td>p70</td>
+<td>55027</td>
+<td>0.97</td>
+<td>52980</td>
+<td>12.56</td>
+</tr>
+<tr>
+<td>p71</td>
+<td>44077</td>
+<td>0.92</td>
+<td>40584</td>
+<td>12.51</td>
+</tr>
+</tbody></table>
+<h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><p>代码请参见<a target="_blank" rel="noopener" href="https://github.com/Cipher731/CFLP">Github Repo</a>。</p>
+<h1 id="四、详细解"><a href="#四、详细解" class="headerlink" title="四、详细解"></a>四、详细解</h1><p>详细解请参见<a target="_blank" rel="noopener" href="https://github.com/Cipher731/CFLP">Github Repo</a>中的hc和sa文件夹，分别对应爬山法和模拟退火法的解。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%97%E6%B3%95%E7%AE%80%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">一、算法简述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BB%93%E6%9E%9C"><span class="toc-number">2.</span> <span class="toc-text">二、结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">三、代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AF%A6%E7%BB%86%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">四、详细解</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&text=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&is_video=false&description=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Capacitated Facility Location Problem - Hill-Climbing and SA&body=Check out this article: https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&title=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&name=Capacitated Facility Location Problem - Hill-Climbing and SA&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/&t=Capacitated Facility Location Problem - Hill-Climbing and SA"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Cipher731
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

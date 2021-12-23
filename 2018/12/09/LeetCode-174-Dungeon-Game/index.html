@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、题目要求The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 174. Dungeon Game">
+<meta property="og:url" content="https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/index.html">
+<meta property="og:site_name" content="Cipher731&#39;s Blog">
+<meta property="og:description" content="一、题目要求The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initial">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-09T10:12:53.000Z">
+<meta property="article:modified_time" content="2021-12-23T08:14:15.937Z">
+<meta property="article:author" content="Cipher731">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LeetCode 174. Dungeon Game</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+    <!-- Google Analytics -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-199728190-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-199728190-1');
+        </script>
+    
+    <!-- Baidu Analytics -->
+    
+        <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?93db9d043a30530833d0f8e65e1833a3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2018/12/23/Capacitated-Facility-Location-Problem-Hill-Climbing-and-SA/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2018/12/02/LeetCode-146-LRU-Cache/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&text=LeetCode 174. Dungeon Game"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&is_video=false&description=LeetCode 174. Dungeon Game"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 174. Dungeon Game&body=Check out this article: https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&name=LeetCode 174. Dungeon Game&description=&lt;h1 id=&#34;一、题目要求&#34;&gt;&lt;a href=&#34;#一、题目要求&#34; class=&#34;headerlink&#34; title=&#34;一、题目要求&#34;&gt;&lt;/a&gt;一、题目要求&lt;/h1&gt;&lt;p&gt;The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.&lt;/p&gt;
+&lt;p&gt;The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.&lt;/p&gt;
+&lt;p&gt;Some of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms; other rooms are either empty (0’s) or contain magic orbs that increase the knight’s health (positive integers).&lt;/p&gt;
+&lt;p&gt;In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.&lt;/p&gt;
+&lt;p&gt;Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.&lt;/p&gt;
+&lt;p&gt;For example, given the dungeon below, the initial health of the knight must be at least 7 if he follows the optimal path RIGHT-&amp;gt; RIGHT -&amp;gt; DOWN -&amp;gt; DOWN.&lt;/p&gt;
+&lt;p&gt;-2 (K)    -3    3&lt;br&gt;-5    -10    1&lt;br&gt;10    30    -5 (P)&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The knight’s health has no upper bound.&lt;/li&gt;
+&lt;li&gt;Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&t=LeetCode 174. Dungeon Game"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">一、题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">二、题目分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">三、算法实现</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        LeetCode 174. Dungeon Game
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Cipher731</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-12-09T10:12:53.000Z" itemprop="datePublished">2018-12-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/C/" rel="tag">C++</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一、题目要求"><a href="#一、题目要求" class="headerlink" title="一、题目要求"></a>一、题目要求</h1><p>The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.</p>
+<p>The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.</p>
+<p>Some of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms; other rooms are either empty (0’s) or contain magic orbs that increase the knight’s health (positive integers).</p>
+<p>In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.</p>
+<p>Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.</p>
+<p>For example, given the dungeon below, the initial health of the knight must be at least 7 if he follows the optimal path RIGHT-&gt; RIGHT -&gt; DOWN -&gt; DOWN.</p>
+<p>-2 (K)    -3    3<br>-5    -10    1<br>10    30    -5 (P)</p>
+<p>Note:</p>
+<ul>
+<li>The knight’s health has no upper bound.</li>
+<li>Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.</li>
+</ul>
+<span id="more"></span>
+<h1 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h1><p>这题很显然可以用动态规划来求解，可以将走到一格的问题分解为走到其上方一格和走到其左边一格两个子问题，那么状态就是走到这格的最小所需HP，再减去当前格的HP损耗得到一个中间值，再和之前格的所需HP一起取一个最大值就能找到能走出这格的最小所需HP，也就是最终答案了。<br>这样子想想似乎很简单，但是实际上状态转移就变得十分复杂，最主要的是考虑这样一种情况，不能活着走出之前的格子，这样的话之前计算得到的状态就完全没有用处了，还不如直接把走出格子所需的HP作为状态。<br>所以试着换个思路，把状态定义为走出这格的最小所需HP试试。那么接下来考虑继续状态转移，走出当前格的最小所需HP就是<code>min(走出上格的最小HP, 走出左格的最小HP) - 当前格HP损耗</code>，但是实际这么实现以后，发现碰到为正值的HP补充的格子之后就会出现问题，在碰到比较大的HP补充之后，计算出来的最小所需HP就会变为负值，而如果单纯地把它变为1，则导致无法走过先前的格子，整个思路到这里陷入了僵局。<br>经过一番漫长的思考，意识到应该把从某个位置走到终点所需的最小HP作为状态，然后从终点处倒着计算出在(0, 0)的所需HP，因为走到终点是一个不可割裂的过程，能够成功走过之前的路所需的最小HP并不能确保走过之后的路，但是反过来向前计算就可以确保。</p>
+<h1 id="三、算法实现"><a href="#三、算法实现" class="headerlink" title="三、算法实现"></a>三、算法实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calculateMinimumHP</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; &amp;dungeon)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> M = dungeon.<span class="built_in">size</span>();</span><br><span class="line">  <span class="keyword">int</span> N = dungeon[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">  vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">localMinimumHP</span>(M + <span class="number">1</span>, vector&lt;<span class="keyword">int</span>&gt;(N + <span class="number">1</span>, INT_MAX));</span><br><span class="line">  localMinimumHP[M - <span class="number">1</span>][N - <span class="number">1</span>] = <span class="number">1</span> - dungeon[M - <span class="number">1</span>][N - <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span> (localMinimumHP[M - <span class="number">1</span>][N - <span class="number">1</span>] &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    localMinimumHP[M - <span class="number">1</span>][N - <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = M - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = N - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (i == M - <span class="number">1</span> &amp;&amp; j == N - <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">int</span> enterMinHP = <span class="built_in">min</span>(localMinimumHP[i + <span class="number">1</span>][j], localMinimumHP[i][j + <span class="number">1</span>]) - dungeon[i][j];</span><br><span class="line">      localMinimumHP[i][j] = enterMinHP &lt;= <span class="number">0</span> ? <span class="number">1</span> : enterMinHP;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> localMinimumHP[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">一、题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">二、题目分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">三、算法实现</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&text=LeetCode 174. Dungeon Game"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&is_video=false&description=LeetCode 174. Dungeon Game"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 174. Dungeon Game&body=Check out this article: https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&title=LeetCode 174. Dungeon Game"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&name=LeetCode 174. Dungeon Game&description=&lt;h1 id=&#34;一、题目要求&#34;&gt;&lt;a href=&#34;#一、题目要求&#34; class=&#34;headerlink&#34; title=&#34;一、题目要求&#34;&gt;&lt;/a&gt;一、题目要求&lt;/h1&gt;&lt;p&gt;The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.&lt;/p&gt;
+&lt;p&gt;The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.&lt;/p&gt;
+&lt;p&gt;Some of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms; other rooms are either empty (0’s) or contain magic orbs that increase the knight’s health (positive integers).&lt;/p&gt;
+&lt;p&gt;In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.&lt;/p&gt;
+&lt;p&gt;Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.&lt;/p&gt;
+&lt;p&gt;For example, given the dungeon below, the initial health of the knight must be at least 7 if he follows the optimal path RIGHT-&amp;gt; RIGHT -&amp;gt; DOWN -&amp;gt; DOWN.&lt;/p&gt;
+&lt;p&gt;-2 (K)    -3    3&lt;br&gt;-5    -10    1&lt;br&gt;10    30    -5 (P)&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The knight’s health has no upper bound.&lt;/li&gt;
+&lt;li&gt;Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/12/09/LeetCode-174-Dungeon-Game/&t=LeetCode 174. Dungeon Game"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Cipher731
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

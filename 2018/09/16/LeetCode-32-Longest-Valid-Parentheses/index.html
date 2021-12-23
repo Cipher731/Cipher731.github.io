@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、题目要求Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring. Example 1: 123Input: &quot;(()&quot;Output: 2Explanation: The">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 32. Longest Valid Parentheses">
+<meta property="og:url" content="https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/index.html">
+<meta property="og:site_name" content="Cipher731&#39;s Blog">
+<meta property="og:description" content="一、题目要求Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring. Example 1: 123Input: &quot;(()&quot;Output: 2Explanation: The">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-16T01:41:42.000Z">
+<meta property="article:modified_time" content="2021-12-23T08:14:15.937Z">
+<meta property="article:author" content="Cipher731">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LeetCode 32. Longest Valid Parentheses</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+    <!-- Google Analytics -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-199728190-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-199728190-1');
+        </script>
+    
+    <!-- Baidu Analytics -->
+    
+        <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?93db9d043a30530833d0f8e65e1833a3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2018/09/23/LeetCode-37-Sudoku-Solver/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2018/09/08/LeetCode-23-Merge-k-Sorted-Lists/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&text=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&is_video=false&description=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 32. Longest Valid Parentheses&body=Check out this article: https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&name=LeetCode 32. Longest Valid Parentheses&description=&lt;h1 id=&#34;一、题目要求&#34;&gt;&lt;a href=&#34;#一、题目要求&#34; class=&#34;headerlink&#34; title=&#34;一、题目要求&#34;&gt;&lt;/a&gt;一、题目要求&lt;/h1&gt;&lt;p&gt;Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Input: &amp;quot;(()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Output: 2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Explanation: The longest valid parentheses substring is &amp;quot;()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Example 2:&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Input: &amp;quot;)()())&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Output: 4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Explanation: The longest valid parentheses substring is &amp;quot;()()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&t=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">一、题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9A%B4%E5%8A%9B%E6%B1%82%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">二、暴力求解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%A9%E7%94%A8%E6%A0%88%E6%B1%82%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">三、利用栈求解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">四、利用动态规划求解</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        LeetCode 32. Longest Valid Parentheses
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Cipher731</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-09-16T01:41:42.000Z" itemprop="datePublished">2018-09-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/C/" rel="tag">C++</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一、题目要求"><a href="#一、题目要求" class="headerlink" title="一、题目要求"></a>一、题目要求</h1><p>Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring.</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;(()&quot;</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The longest valid parentheses substring is &quot;()&quot;</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;)()())&quot;</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: The longest valid parentheses substring is &quot;()()&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h1 id="二、暴力求解"><a href="#二、暴力求解" class="headerlink" title="二、暴力求解"></a>二、暴力求解</h1><p>先考虑暴力求解的复杂度，对给定字符串的每个子串进行是否为有效括号序列的校验，枚举子串的时间复杂度为$O(N^2)$，校验是否为有效括号序列的时间复杂度为$O(N)$，总的时间复杂度为$O(N^3)$。</p>
+<h1 id="三、利用栈求解"><a href="#三、利用栈求解" class="headerlink" title="三、利用栈求解"></a>三、利用栈求解</h1><p>接下来更进一步地思考时间复杂度更低的算法，在判断括号序列是否有效时我们通常会使用栈，我们是否可以在一趟遍历中检验有效性的同时记录下序列长度呢。</p>
+<p>在检验括号序列是否有效的时候，我们只需要记录先前无效序列的结束位置来作为当前有效序列的起始位置，借此在当前序列变为无效的时候计算当前序列的长度，再记录整个遍历过程中最长的有效序列长度就行了。</p>
+<p>但是如果当前序列结束的时候，栈内还有左括号存留，就需要利用最后一个匹配到的左括号作为序列的起始来计算当前序列的长度。因此我们在栈中需要保存匹配到的左括号的索引，在结束匹配的时候用栈顶的索引来计算长度，这个时候看到如果将当前序列之前的右括号索引推入栈中，计算的时候也能直接用这个索引，并在初始化时在栈中推入-1作为之前序列的结束位置，这样的话处理不同状态的代码具有高度一致性，十分优雅。</p>
+<p>这个算法时间复杂度为$O(N)$，完整的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(<span class="keyword">const</span> string &amp;str)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">size_t</span> len = str.<span class="built_in">length</span>();</span><br><span class="line">  stack&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">  s.<span class="built_in">push</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str[i] == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">      s.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      s.<span class="built_in">pop</span>();</span><br><span class="line">      <span class="keyword">if</span> (s.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        s.<span class="built_in">push</span>(i);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ret = <span class="built_in">max</span>(ret, i - s.<span class="built_in">top</span>());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、利用动态规划求解"><a href="#四、利用动态规划求解" class="headerlink" title="四、利用动态规划求解"></a>四、利用动态规划求解</h1><p>这类求最长的题目通常能用动态规划进行求解，依据动态规划的解题步骤，先确定状态和状态方程。</p>
+<p>将当前索引的最长有效括号序列长度作为状态，分析状态转换条件，得出如下状态方程<br>$$ dp[i]= \begin{cases} dp[i-2]+2, &amp; \text {if $s[i] == \textrm’)\textrm’$ and $s[i-1] == \textrm’(\textrm’$} \\ dp[i-1]+dp[i-dp[i-1]-2]+2, &amp; \text {if $s[i] == \textrm’)\textrm’$ and $s[i-1] == \textrm’)\textrm’$ and $s[i−dp[i−1]−1] == \textrm’(\textrm’$} \end{cases} $$</p>
+<p>这个算法时间复杂度为$O(N)$，代码就不贴出来了。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">一、题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9A%B4%E5%8A%9B%E6%B1%82%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">二、暴力求解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%A9%E7%94%A8%E6%A0%88%E6%B1%82%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">三、利用栈求解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">四、利用动态规划求解</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&text=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&is_video=false&description=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 32. Longest Valid Parentheses&body=Check out this article: https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&title=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&name=LeetCode 32. Longest Valid Parentheses&description=&lt;h1 id=&#34;一、题目要求&#34;&gt;&lt;a href=&#34;#一、题目要求&#34; class=&#34;headerlink&#34; title=&#34;一、题目要求&#34;&gt;&lt;/a&gt;一、题目要求&lt;/h1&gt;&lt;p&gt;Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Input: &amp;quot;(()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Output: 2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Explanation: The longest valid parentheses substring is &amp;quot;()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Example 2:&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Input: &amp;quot;)()())&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Output: 4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Explanation: The longest valid parentheses substring is &amp;quot;()()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/&t=LeetCode 32. Longest Valid Parentheses"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Cipher731
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

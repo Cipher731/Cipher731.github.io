@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、题目要求Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all of the following rules: Each of the digits 1-9 must occur exactly once in each row.Each of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 37. Sudoku Solver">
+<meta property="og:url" content="https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/index.html">
+<meta property="og:site_name" content="Cipher731&#39;s Blog">
+<meta property="og:description" content="一、题目要求Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all of the following rules: Each of the digits 1-9 must occur exactly once in each row.Each of">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cipher731.github.io/images/LeetCode-37.png">
+<meta property="article:published_time" content="2018-09-23T05:54:37.000Z">
+<meta property="article:modified_time" content="2021-12-23T08:14:15.937Z">
+<meta property="article:author" content="Cipher731">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cipher731.github.io/images/LeetCode-37.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LeetCode 37. Sudoku Solver</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+    <!-- Google Analytics -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-199728190-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-199728190-1');
+        </script>
+    
+    <!-- Baidu Analytics -->
+    
+        <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?93db9d043a30530833d0f8e65e1833a3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2018/09/28/LeetCode-39-Combination-Sum/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2018/09/16/LeetCode-32-Longest-Valid-Parentheses/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&text=LeetCode 37. Sudoku Solver"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&is_video=false&description=LeetCode 37. Sudoku Solver"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 37. Sudoku Solver&body=Check out this article: https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&name=LeetCode 37. Sudoku Solver&description=&lt;h1 id=&#34;一、题目要求&#34;&gt;&lt;a href=&#34;#一、题目要求&#34; class=&#34;headerlink&#34; title=&#34;一、题目要求&#34;&gt;&lt;/a&gt;一、题目要求&lt;/h1&gt;&lt;p&gt;Write a program to solve a Sudoku puzzle by filling the empty cells.&lt;/p&gt;
+&lt;p&gt;A sudoku solution must satisfy all of the following rules:&lt;/p&gt;
+&lt;p&gt;Each of the digits 1-9 must occur exactly once in each row.&lt;br&gt;Each of the digits 1-9 must occur exactly once in each column.&lt;br&gt;Each of the the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.&lt;br&gt;Empty cells are indicated by the character ‘.’.&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;p&gt;The given board contain only digits 1-9 and the character ‘.’.&lt;br&gt;You may assume that the given Sudoku puzzle will have a single unique solution.&lt;br&gt;The given board size is always 9x9.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&t=LeetCode 37. Sudoku Solver"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">一、题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%80%E6%AC%A1%E9%94%99%E8%AF%AF%E7%9A%84%E5%B0%9D%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">二、一次错误的尝试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%AD%A3"><span class="toc-number">3.</span> <span class="toc-text">三、进行修正</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        LeetCode 37. Sudoku Solver
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Cipher731</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-09-23T05:54:37.000Z" itemprop="datePublished">2018-09-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/C/" rel="tag">C++</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一、题目要求"><a href="#一、题目要求" class="headerlink" title="一、题目要求"></a>一、题目要求</h1><p>Write a program to solve a Sudoku puzzle by filling the empty cells.</p>
+<p>A sudoku solution must satisfy all of the following rules:</p>
+<p>Each of the digits 1-9 must occur exactly once in each row.<br>Each of the digits 1-9 must occur exactly once in each column.<br>Each of the the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.<br>Empty cells are indicated by the character ‘.’.</p>
+<p>Note:</p>
+<p>The given board contain only digits 1-9 and the character ‘.’.<br>You may assume that the given Sudoku puzzle will have a single unique solution.<br>The given board size is always 9x9.</p>
+<span id="more"></span>
+
+<h1 id="二、一次错误的尝试"><a href="#二、一次错误的尝试" class="headerlink" title="二、一次错误的尝试"></a>二、一次错误的尝试</h1><p>由于Cipher我对数独并不是很熟悉，一开始解这题的时候只考虑到从确定的值一个接一个推导出所有的值的方法，但是经历了一次WA之后发现，实际上会有这样一个情况，无法通过给定的信息确定下一个填上的数字，所以需要试探性地对可能的情况进行搜索，这个时候自然想到需要用到回溯。<br>下面是一根筋的错误解法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt; &amp;board)</span> </span>&#123;</span><br><span class="line">  vector&lt;bitset&lt;9&gt;&gt; <span class="built_in">rowFlags</span>(<span class="number">9</span>, bitset&lt;<span class="number">9</span>&gt;());</span><br><span class="line">  vector&lt;bitset&lt;9&gt;&gt; <span class="built_in">colFlags</span>(<span class="number">9</span>, bitset&lt;<span class="number">9</span>&gt;());</span><br><span class="line">  vector&lt;vector&lt;bitset&lt;9&gt;&gt;&gt; <span class="built_in">blockFlags</span>(<span class="number">3</span>, vector&lt;bitset&lt;<span class="number">9</span>&gt;&gt;(<span class="number">3</span>, bitset&lt;<span class="number">9</span>&gt;()));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">int</span> val = board[i][j] - <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">      rowFlags[i].<span class="built_in">set</span>(val);</span><br><span class="line">      colFlags[j].<span class="built_in">set</span>(val);</span><br><span class="line">      blockFlags[i / <span class="number">3</span>][j / <span class="number">3</span>].<span class="built_in">set</span>(val);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">auto</span> totalFlags = rowFlags[i] | colFlags[j] | blockFlags[i / <span class="number">3</span>][j / <span class="number">3</span>];</span><br><span class="line">      <span class="keyword">if</span> (totalFlags.<span class="built_in">count</span>() == <span class="number">8</span> &amp;&amp; board[i][j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">        q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(i, j));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="keyword">int</span> i = q.<span class="built_in">front</span>().first;</span><br><span class="line">    <span class="keyword">int</span> j = q.<span class="built_in">front</span>().second;</span><br><span class="line">    <span class="keyword">if</span> (board[i][j] != <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">      q.<span class="built_in">pop</span>();</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> block_i = i / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> block_j = j / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">auto</span> totalFlags = rowFlags[i] | colFlags[j] | blockFlags[block_i][block_j];</span><br><span class="line">    <span class="keyword">if</span> (totalFlags.<span class="built_in">count</span>() == <span class="number">8</span>) &#123;</span><br><span class="line">      <span class="keyword">auto</span> answer = (<span class="keyword">unsigned</span>) <span class="built_in">log2</span>(totalFlags.<span class="built_in">flip</span>().<span class="built_in">to_ulong</span>());</span><br><span class="line">      board[i][j] = answer + <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">      rowFlags[i].<span class="built_in">set</span>(answer);</span><br><span class="line">      colFlags[j].<span class="built_in">set</span>(answer);</span><br><span class="line">      blockFlags[block_i][block_j].<span class="built_in">set</span>(answer);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">9</span>; k++) &#123;</span><br><span class="line">        q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(i, k));</span><br><span class="line">        q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(k, j));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; <span class="number">3</span>; m++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; <span class="number">3</span>; n++) &#123;</span><br><span class="line">          q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(block_i + m, block_j + n));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    q.<span class="built_in">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、进行修正"><a href="#三、进行修正" class="headerlink" title="三、进行修正"></a>三、进行修正</h1><p>从之前的尝试中已经得出了结论：需要在无法确定时对所有可能的填法进行尝试。而尝试失败后需要进行回溯，所以使用递归会很清晰。<br>修正后的算法如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  vector&lt;bitset&lt;9&gt;&gt; rowShown;</span><br><span class="line">  vector&lt;bitset&lt;9&gt;&gt; colShown;</span><br><span class="line">  vector&lt;vector&lt;bitset&lt;9&gt;&gt;&gt; blockShown;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Solution</span>() : <span class="built_in">rowShown</span>(vector&lt;bitset&lt;<span class="number">9</span>&gt;&gt;(<span class="number">9</span>, bitset&lt;<span class="number">9</span>&gt;())),</span><br><span class="line">               <span class="built_in">colShown</span>(vector&lt;bitset&lt;<span class="number">9</span>&gt;&gt;(<span class="number">9</span>, bitset&lt;<span class="number">9</span>&gt;())),</span><br><span class="line">               <span class="built_in">blockShown</span>(vector&lt;vector&lt;bitset&lt;<span class="number">9</span>&gt;&gt;&gt;(<span class="number">3</span>, vector&lt;bitset&lt;<span class="number">9</span>&gt;&gt;(<span class="number">3</span>, bitset&lt;<span class="number">9</span>&gt;()))) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt; &amp;board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> val = board[i][j] - <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">        rowShown[i].<span class="built_in">set</span>(val);</span><br><span class="line">        colShown[j].<span class="built_in">set</span>(val);</span><br><span class="line">        blockShown[i / <span class="number">3</span>][j / <span class="number">3</span>].<span class="built_in">set</span>(val);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">solve</span>(board);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">solve</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt; &amp;board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">char</span> guess = <span class="string">&#x27;1&#x27;</span>; guess &lt;= <span class="string">&#x27;9&#x27;</span>; guess++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isValid</span>(board, i, j, guess)) &#123;</span><br><span class="line">              <span class="built_in">setDigit</span>(board, i, j, guess, <span class="literal">true</span>);</span><br><span class="line">              <span class="keyword">if</span> (<span class="built_in">solve</span>(board)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">setDigit</span>(board, i, j, guess, <span class="literal">false</span>);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setDigit</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt; &amp;board, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">char</span> guess, <span class="keyword">bool</span> value)</span> </span>&#123;</span><br><span class="line">    board[row][col] = value ? guess : <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">    rowShown[row].<span class="built_in">set</span>(guess - <span class="string">&#x27;1&#x27;</span>, value);</span><br><span class="line">    colShown[col].<span class="built_in">set</span>(guess - <span class="string">&#x27;1&#x27;</span>, value);</span><br><span class="line">    blockShown[row / <span class="number">3</span>][col / <span class="number">3</span>].<span class="built_in">set</span>(guess - <span class="string">&#x27;1&#x27;</span>, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt; &amp;board, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">char</span> guess)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pos = guess - <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> !(rowShown[row].<span class="built_in">test</span>(pos) || colShown[col].<span class="built_in">test</span>(pos) || blockShown[row / <span class="number">3</span>][col / <span class="number">3</span>].<span class="built_in">test</span>(pos));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/LeetCode-37.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">一、题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%80%E6%AC%A1%E9%94%99%E8%AF%AF%E7%9A%84%E5%B0%9D%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">二、一次错误的尝试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%AD%A3"><span class="toc-number">3.</span> <span class="toc-text">三、进行修正</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&text=LeetCode 37. Sudoku Solver"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&is_video=false&description=LeetCode 37. Sudoku Solver"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 37. Sudoku Solver&body=Check out this article: https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&title=LeetCode 37. Sudoku Solver"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&name=LeetCode 37. Sudoku Solver&description=&lt;h1 id=&#34;一、题目要求&#34;&gt;&lt;a href=&#34;#一、题目要求&#34; class=&#34;headerlink&#34; title=&#34;一、题目要求&#34;&gt;&lt;/a&gt;一、题目要求&lt;/h1&gt;&lt;p&gt;Write a program to solve a Sudoku puzzle by filling the empty cells.&lt;/p&gt;
+&lt;p&gt;A sudoku solution must satisfy all of the following rules:&lt;/p&gt;
+&lt;p&gt;Each of the digits 1-9 must occur exactly once in each row.&lt;br&gt;Each of the digits 1-9 must occur exactly once in each column.&lt;br&gt;Each of the the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.&lt;br&gt;Empty cells are indicated by the character ‘.’.&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;p&gt;The given board contain only digits 1-9 and the character ‘.’.&lt;br&gt;You may assume that the given Sudoku puzzle will have a single unique solution.&lt;br&gt;The given board size is always 9x9.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cipher731.github.io/2018/09/23/LeetCode-37-Sudoku-Solver/&t=LeetCode 37. Sudoku Solver"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Cipher731
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
