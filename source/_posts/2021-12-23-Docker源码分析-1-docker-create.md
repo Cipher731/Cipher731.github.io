@@ -855,3 +855,4 @@ func (daemon *Daemon) containerCreate(opts createOpts) (containertypes.Container
 	return containertypes.ContainerCreateCreatedBody{ID: ctr.ID, Warnings: warnings}, nil
 }
 ```
+这里就涉及到大量的检查和操作了，后续再继续展开。
