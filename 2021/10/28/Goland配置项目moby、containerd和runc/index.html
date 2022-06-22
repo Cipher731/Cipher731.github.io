@@ -14,7 +14,7 @@
 <meta property="og:description" content="0. 前言如果想要好好审计代码，能够查找引用和声明是必不可少的，如果用普通的编辑器并且依靠搜索来寻找引用和声明，不是说不行，但除非是超级老手，一般效率都比不过Ctrl+左键直接点。 个人是JetBrains吹，所以就喜欢JetBrains全家桶审计代码。 这一篇会介绍怎么用Goland对moby、containerd和runc项目配置，整体其实非常简单，containerd和runc都用了modu">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-28T14:27:23.000Z">
-<meta property="article:modified_time" content="2022-06-22T08:29:54.856Z">
+<meta property="article:modified_time" content="2022-06-22T08:30:04.076Z">
 <meta property="article:author" content="Cipher731">
 <meta property="article:tag" content="Cloud Native">
 <meta property="article:tag" content="Code Audit">
@@ -192,14 +192,14 @@
 <h2 id="1-获取代码"><a href="#1-获取代码" class="headerlink" title="1. 获取代码"></a>1. 获取代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># disable GO111MODULE so that go get will download source code to GOPATH</span></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=off  </span><br><span class="line"><span class="comment"># set GO111MODULE=off # for Windows</span></span><br><span class="line">go get -d github.com/moby/moby</span><br><span class="line">go get -d github.com/containerd/containerd</span><br><span class="line">go get -d github.com/opencontainers/runc  <span class="comment"># 这里会碰到报没开cgo的错，暂时不清楚会有什么后果</span></span><br></pre></td></tr></table></figure>
 <p>全部跑完以后代码就在GOPATH下面了</p>
 <h2 id="2-修改moby项目的文件夹名"><a href="#2-修改moby项目的文件夹名" class="headerlink" title="2. 修改moby项目的文件夹名"></a>2. 修改moby项目的文件夹名</h2><p>由于moby曾经的名字是docker，直到2017年项目名称docker才被改成了moby，为了保持上下游项目的兼容，项目代码中的import路径仍然沿用了docker。</p>
-<p>与其克隆一份docker/docker的源码放在GOPATH下面，不如直接把moby/moby源码目录改成docker/docker来方便Goland寻找依赖。</p>
+<p>与其克隆一份docker&#x2F;docker的源码放在GOPATH下面，不如直接把moby&#x2F;moby源码目录改成docker&#x2F;docker来方便Goland寻找依赖。</p>
 <p>Linux:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="variable">$GOPATH</span>/src/github.com/docker</span><br><span class="line">mv <span class="variable">$GOPATH</span>/src/github.com/moby/moby <span class="variable">$GOPATH</span>/src/github.com/docker/docker</span><br></pre></td></tr></table></figure>
 
 <p>Windows Powershell:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="variable">$env</span>:GOPATH\src\github.com\docker</span><br><span class="line">mv <span class="variable">$env</span>:GOPATH\src\github.com\moby\moby <span class="variable">$env</span>:GOPATH\src\github.com\docker\docker</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-配置docker-moby-项目"><a href="#3-配置docker-moby-项目" class="headerlink" title="3. 配置docker(moby)项目"></a>3. 配置docker(moby)项目</h2><p>使用Goland的Open打开docker/docker的目录以后，需要检查settings-Go（导航栏第一个）中的这些配置：</p>
+<h2 id="3-配置docker-moby-项目"><a href="#3-配置docker-moby-项目" class="headerlink" title="3. 配置docker(moby)项目"></a>3. 配置docker(moby)项目</h2><p>使用Goland的Open打开docker&#x2F;docker的目录以后，需要检查settings-Go（导航栏第一个）中的这些配置：</p>
 <ul>
 <li><code>GOROOT</code>配置中选择Go的SDK</li>
 <li><code>Go Modules</code>中确保<code>Enable go modules integration</code>是<strong>关闭</strong>的</li>
