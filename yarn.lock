@@ -619,12 +619,12 @@ hexo-generator-category@^1.0.0:
   dependencies:
     hexo-pagination "1.0.0"
 
-hexo-generator-index@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/hexo-generator-index/download/hexo-generator-index-2.0.0.tgz"
+hexo-generator-index@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-index/-/hexo-generator-index-3.0.0.tgz#4c9233731e027a6af6491886a4aafe08ffdaffe0"
+  integrity sha512-83AuNN4cWdLVi//3ugR8E3kR6rrOwhXZt+hOCm1IjtIGj353/GlrtpMHpqZHU5kqipzj4miy9dweVdukXglVWw==
   dependencies:
-    hexo-pagination "1.0.0"
-    timsort "^0.3.0"
+    hexo-pagination "3.0.0"
 
 hexo-generator-seo-friendly-sitemap@^0.2.1:
   version "0.2.1"
@@ -674,6 +674,11 @@ hexo-math@^4.0.0:
 hexo-pagination@1.0.0:
   version "1.0.0"
   resolved "https://registry.nlark.com/hexo-pagination/download/hexo-pagination-1.0.0.tgz"
+
+hexo-pagination@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-3.0.0.tgz#b98b050bbddff25ae646e3d00ad607ac6ae77ea7"
+  integrity sha512-8oo1iozloZo7TojPVYg4IxL3SJKCBdSJ908fTlIxIK7TWJIKdYnQlW31+12DBJ0NhVZA/lZisPObGF08wT8fKw==
 
 hexo-renderer-ejs@^2.0.0:
   version "2.0.0"
@@ -1381,10 +1386,6 @@ text-table@^0.2.0:
 tildify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/tildify/download/tildify-2.0.0.tgz"
-
-timsort@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npm.taobao.org/timsort/download/timsort-0.3.0.tgz"
 
 tiny-emitter@^2.0.0:
   version "2.1.0"
